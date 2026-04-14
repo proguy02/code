@@ -22,9 +22,9 @@ func main() {
 	words := string(text)
 	words = utils.String(words)
 	words = utils.AnA(words)
-	//words = utils.Qoute(words)
-	//words = utils.Puncts(words)
+	words = utils.Qoute(words)
 	words = utils.Base(words)
+	words = utils.Puncts(words)
 
 	err = os.WriteFile(output, []byte(words), 0644)
 	if err != nil {

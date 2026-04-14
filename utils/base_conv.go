@@ -88,11 +88,16 @@ func Qoute(sen string) string {
 func AnA(s string) string {
 	words := strings.Fields(s)
 
-	for x := 0; x < len(words); x++ {
-		if words[x] == "a" && strings.ContainsAny(words[x+1][:1], "aeiouhAEIOUH") {
-			words[x] = "an"
-		} else if words[x] == "A" && strings.ContainsAny(words[x+1][:1], "aeiouhAEIOUH") {
-			words[x] = "An"
+	for i := 0; i < len(words)-1; i++ {
+		vowels := strings.ContainsAny("aeiouhAEIOUH", string(words[i+1][:1]))
+		if words[i] == "a" && vowels {
+			words[i] = "an"
+		} else if words[i] == "A" && vowels {
+			words[i] = "An"
+		} else if words[i] == "an" && !vowels {
+			words[i] = "a"
+		} else if words[i] == "An" && !vowels {
+			words[i] = "A"
 		}
 	}
 	return strings.Join(words, " ")

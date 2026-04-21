@@ -1,3 +1,5 @@
+// Author Raymond Nicholas. @raymondproguy
+
 package main
 
 import (
@@ -27,10 +29,8 @@ func main() {
 
 	for content.Scan() {
 		text := content.Text()
-		modified := processors.Puncts(text)
-		modified = processors.Qoute(modified)
-		modified = processors.Qoute2(modified)
-		modified = processors.AnA(modified)
+
+		modified := processors.AnA(text)
 		modified = processors.Hex(modified)
 		modified = processors.Bin(modified)
 		modified = processors.Up(modified)
@@ -39,6 +39,10 @@ func main() {
 		modified = processors.UpN(modified)
 		modified = processors.LowN(modified)
 		modified = processors.CapN(modified)
+		modified = processors.Puncts(modified)
+		modified = processors.Qoute(modified)
+		modified = processors.Qoute2(modified)
+
 		write.WriteString(modified)
 		write.WriteString("\n")
 	}
@@ -49,5 +53,6 @@ func main() {
 		fmt.Println("Error: ", err)
 		return
 	}
+
 	fmt.Println("File modified successfully, check result.txt")
 }

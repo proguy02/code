@@ -12,6 +12,7 @@ func Up(str string) string {
 		if word[r] == "(up)" && r > 0 {
 			word[r-1] = strings.ToUpper(word[r-1])
 			word = append(word[:r], word[r+1:]...)
+			r--
 		}
 	}
 
@@ -25,6 +26,7 @@ func Low(str string) string {
 		if word[r] == "(low)" && r > 0 {
 			word[r-1] = strings.ToLower(word[r-1])
 			word = append(word[:r], word[r+1:]...)
+			r--
 		}
 	}
 
@@ -38,6 +40,7 @@ func Cap(str string) string {
 		if word[r] == "(cap)" && r > 0 {
 			word[r-1] = strings.ToUpper(word[r-1][:1]) + strings.ToLower(word[r-1][1:])
 			word = append(word[:r], word[r+1:]...)
+			r--
 		}
 	}
 
@@ -56,6 +59,7 @@ func UpN(str string) string {
 				word[j] = strings.ToUpper(word[j])
 			}
 			word = append(word[:r], word[r+2:]...)
+			r--
 		}
 	}
 
@@ -74,6 +78,7 @@ func LowN(str string) string {
 				word[j] = strings.ToLower(word[j])
 			}
 			word = append(word[:r], word[r+2:]...)
+			r--
 		}
 	}
 
@@ -89,9 +94,10 @@ func CapN(str string) string {
 			next = strings.Trim(next, ")")
 			conv, _ := strconv.Atoi(next)
 			for j := r - conv; j < r; j++ {
-				word[j] = strings.ToUpper(word[j][:1]) + strings.ToUpper(word[j][1:])
+				word[j] = strings.ToUpper(word[j][:1]) + strings.ToLower(word[j][1:])
 			}
 			word = append(word[:r], word[r+2:]...)
+			r--
 		}
 	}
 

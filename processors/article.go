@@ -41,16 +41,20 @@ func AnA(sen string) string {
 func Puncts(s string) string {
 	words := strings.Fields(s)
 	result := []string{}
+
 	for _, char := range words {
-		for len(char) > 0 && strings.ContainsAny(char[:1], ".,!?,") {
+		for len(char) > 0 && strings.ContainsAny(char[:1], ".,!?,:;") {
 			if len(result) > 0 {
 				result[len(result)-1] += char[:1]
 			}
 			char = char[1:]
 		}
-		if char != " " {
+		if char != "" {
 			result = append(result, char)
 		}
 	}
-	return strings.Join(result, " ")
+
+	s = strings.Join(result, " ")
+	s = strings.ReplaceAll(s, "  ", " ")
+	return s
 }
